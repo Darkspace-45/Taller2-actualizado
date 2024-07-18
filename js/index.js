@@ -250,15 +250,26 @@ document.addEventListener("DOMContentLoaded", function() {
             return false;
         }
 
-        fetch('https://raw.githubusercontent.com/tu-usuario/mi-repo/main/data.json')
-    .then(response => response.json())
+const dataUrl = 'https://darkspace-45.github.io/Taller2-actualizado/data.json';
+
+fetch(dataUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
-        // Aquí puedes trabajar con los datos cargados desde data.json
+
         console.log(data);
+
+        const dataContainer = document.getElementById('data-container');
+        dataContainer.textContent = JSON.stringify(data, null, 2);
     })
     .catch(error => {
-        console.error('Error fetching data.json:', error);
+        console.error('Fetch error:', error);
     });
+
 
 
         return true;
