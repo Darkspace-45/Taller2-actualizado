@@ -250,6 +250,17 @@ document.addEventListener("DOMContentLoaded", function() {
             return false;
         }
 
+        fetch('https://raw.githubusercontent.com/tu-usuario/mi-repo/main/data.json')
+    .then(response => response.json())
+    .then(data => {
+        // Aquí puedes trabajar con los datos cargados desde data.json
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error fetching data.json:', error);
+    });
+
+
         return true;
     }
 });
